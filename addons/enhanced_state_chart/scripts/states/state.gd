@@ -9,6 +9,7 @@ signal deactivated()
 signal entered()
 signal physics_processed(delta: float)
 signal processed(delta: float)
+signal unhandled_input(event: InputEvent)
 signal exited()
 
 @export var debug: bool = false
@@ -41,6 +42,12 @@ func enter() -> void:
 
 func _physics_process(delta: float) -> void:
 	physics_processed.emit(delta)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not is_active:
+		return
+
+	unhandled_input.emit(event)
 
 func _process(delta: float) -> void:
 	processed.emit(delta)

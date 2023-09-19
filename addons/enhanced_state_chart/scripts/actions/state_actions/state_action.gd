@@ -9,6 +9,7 @@ func _ready() -> void:
 	state.entered.connect(_on_state_entered)
 	state.physics_processed.connect(_on_state_physics_processed)
 	state.processed.connect(_on_state_processed)
+	state.unhandled_input.connect(_on_state_unhandled_input)
 	state.exited.connect(_on_state_exited)
 
 
@@ -19,6 +20,9 @@ func _on_state_physics_processed(_delta: float) -> void:
 	pass
 
 func _on_state_processed(_delta: float) -> void:
+	pass
+
+func _on_state_unhandled_input(event: InputEvent) -> void:
 	pass
 
 func _on_state_exited() -> void:
