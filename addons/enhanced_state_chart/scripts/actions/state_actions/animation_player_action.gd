@@ -6,7 +6,7 @@ class_name EAnimationPlayerStateAction
 
 
 func _on_state_entered() -> void:
-	if !is_multiplayer_authority()
+	if !is_multiplayer_authority():
 		return
 	
 	play.rpc()
