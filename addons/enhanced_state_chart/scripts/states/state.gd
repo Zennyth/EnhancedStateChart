@@ -58,8 +58,11 @@ func exit() -> void:
 	
 	if debug: print("[%s] exited" % name)
 
-func handle_transition(transition: ETransition) -> void:
-	get_parent().handle_transition(transition)
+func handle_transition(transition: ETransition) -> bool:
+	if not get_parent() is EState:
+		return false
+
+	return get_parent().handle_transition(transition)
 
 
 func set_is_active(value) -> void:

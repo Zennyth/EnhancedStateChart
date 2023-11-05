@@ -17,6 +17,7 @@ config/icon="res://icon.png"
 [autoload]
 
 ClassUtils="*res://addons/enhanced_common/scripts/utils/class_utils.gd"
+NodeBinder="*res://addons/enhanced_common/scripts/node_binders/node_binder.gd"
 
 [editor_plugins]
 

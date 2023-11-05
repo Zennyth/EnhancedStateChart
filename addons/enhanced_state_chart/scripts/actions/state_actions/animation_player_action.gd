@@ -13,7 +13,7 @@ func _on_state_entered() -> void:
 
 @rpc("call_local")
 func play() -> void:
-	animation_player.play(animation_name if animation_name != null else state.name)
+	animation_player.play(animation_name if !StringUtils.is_null_or_empty(animation_name) else state.name)
 
 func _on_state_exited() -> void:
 	pass

@@ -48,17 +48,17 @@ func enter() -> void:
 	active_state = initial_state
 	super()
 
-func handle_transition(transition: ETransition) -> void:
+func handle_transition(transition: ETransition) -> bool:
 	if transition.transition_owner == self:
 		for child_transition in get_all_transition_children():
 			if transition.is_equal_to(child_transition):
-				return
+				return false
 
 	if transition.to in get_children():
 		active_state = transition.to
-		return
+		return true
 
-	super(transition)
+	return super(transition)
 
 func exit() -> void:
 	active_state = null
