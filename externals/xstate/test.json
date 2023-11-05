@@ -1,0 +1,51 @@
+{
+    "id": "Parallel states",
+    "description": "Video player machine",
+    "states": {
+        "video": {
+            "description": "active at the same time as the audio state",
+            "initial": "playing",
+            "states": {
+                "playing": {
+                    "on": {
+                        "stop": {
+                            "target": "stopped",
+                            "internal": false
+                        }
+                    }
+                },
+                "stopped": {
+                    "on": {
+                        "play": {
+                            "target": "playing",
+                            "internal": false
+                        }
+                    }
+                }
+            }
+        },
+        "audio": {
+            "description": "active at the same time as the video state",
+            "initial": "muted",
+            "states": {
+                "muted": {
+                    "on": {
+                        "unmute": {
+                            "target": "unmuted",
+                            "internal": false
+                        }
+                    }
+                },
+                "unmuted": {
+                    "on": {
+                        "mute": {
+                            "target": "muted",
+                            "internal": false
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "type": "parallel"
+}

@@ -1,0 +1,15 @@
+[remap]
+
+importer="xstate"
+type="PackedScene"
+uid="uid://c7tkdure3tnn"
+path="res://.godot/imported/test.json-c275a186ad8fcf71d0f2fc00e0a41d6b.tscn"
+
+[deps]
+
+source_file="res://externals/xstate/test.json"
+dest_files=["res://.godot/imported/test.json-c275a186ad8fcf71d0f2fc00e0a41d6b.tscn"]
+
+[params]
+
+use_xstate=false

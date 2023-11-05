@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cd5h22iaixvey"]
+
+[ext_resource type="PackedScene" uid="uid://c7tkdure3tnn" path="res://externals/xstate/test.json" id="1_t24ot"]
+[ext_resource type="Script" path="res://addons/enhanced_state_chart/scripts/actions/state_actions/animation_player_action.gd" id="2_rk8ac"]
+
+[node name="Test" type="Node2D"]
+
+[node name="Parallel states" parent="." instance=ExtResource("1_t24ot")]
+
+[node name="EAnimationPlayerStateAction" type="Node" parent="Parallel states/video/playing" index="1"]
+script = ExtResource("2_rk8ac")
+
+[editable path="Parallel states"]
