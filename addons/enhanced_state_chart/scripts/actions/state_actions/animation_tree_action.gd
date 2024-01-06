@@ -8,9 +8,10 @@ signal animation_finished
 @export var animation_name: String
 
 @export_group("Blend Position")
-@export var sync_type: SyncType = SyncType.NONE
-@export var sync_property: SyncProperty = SyncProperty.MOVE_DIRECTION
+const DirectionType = Controller2D.DirectionType
+@export var action_event: Events = Events.NONE
 @export var controller: Controller2D
+@export var direction_type: DirectionType = DirectionType.MOVE 
 
 
 func _on_state_entered() -> void:
@@ -24,22 +25,12 @@ func _on_state_entered() -> void:
 func play() -> void:
 	animation_state_machine.travel(_animation_name)
 
-	if sync_type == SyncType.ENTER:
+	if action_event == Events.ENTER:
 		sync_blend_position()
 
 
-enum SyncType {
-	NONE,
-	PHYSICS_PROCESS,
-	ENTER
-}
-enum SyncProperty {
-	MOVE_DIRECTION,
-	WATCH_DIRECTION,
-	AIM_DIRECTION,
-}
 func _on_state_physics_processed(_delta: float) -> void:
-	if sync_type != SyncType.PHYSICS_PROCESS:
+	if action_event != Events.PHYSICS_PROCESS:
 		return
 
 	sync_blend_position()
@@ -53,15 +44,8 @@ func _on_state_exited() -> void:
 var _animation_name: String:
 	get: return animation_name if !StringUtils.is_null_or_empty(animation_name) else state.name
 
-func get_sync_property_value() -> Vector2:
-	if sync_property == SyncProperty.MOVE_DIRECTION:
-		return controller.move_direction
-	if sync_property == SyncProperty.WATCH_DIRECTION:
-		return controller.watching_direction
-	return controller.aim_direction 
-
 func sync_blend_position() -> void:
-	animation_tree.set("parameters/StateMachine/" + _animation_name + "/blend_position", get_sync_property_value().normalized())
+	animation_tree.set("parameters/StateMachine/" + _animation_name + "/blend_position", controller.get_direction(direction_type).normalized())
 
 func _on_animation_finished(finished_animation_name: String) -> void:
 	if animation_name != _animation_name or not state.is_active:

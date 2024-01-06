@@ -1,3 +1,4 @@
+@tool
 @icon("res://addons/enhanced_state_chart/icons/transitions/delay_transition.png")
 extends ETransition
 class_name EDelayTransition
